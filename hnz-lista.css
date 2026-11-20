@@ -1,0 +1,118 @@
+/* Lišta "Doby doručení v horní liště" - hrynazdravi.cz */
+
+table[class*=_applyProuzek]{
+  background:linear-gradient(120deg,#fffaf2,#ffe9c9)!important;
+  border:2px solid #f3e6d6!important;
+  border-left:7px solid #ff7a00!important;
+  border-radius:22px!important;
+  border-collapse:separate!important;
+  box-shadow:0 8px 24px rgba(255,122,0,.16)!important;
+}
+table[class*=_applyProuzek] td{
+  font-family:Poppins,Arial,sans-serif!important;
+  vertical-align:middle!important;
+  box-sizing:border-box!important;
+}
+
+/* Levý text */
+table[class*=_applyProuzek] td[rowspan]{
+  background:transparent!important;
+  font-weight:600!important;
+  color:#1a1a1a!important;
+}
+table[class*=_applyProuzek] td[rowspan]::before{content:"🔥 "}
+
+/* Boxíky dopravců: obě půlky stejné pozadí = jeden celek */
+table[class*=_applyProuzek] td[class*=_textDoprava]:not([rowspan]),
+table[class*=_applyProuzek] td[class*=_textDoruceni]{
+  background:rgba(255,255,255,.75)!important;
+  border:1.5px solid #fff!important;
+  transition:background .25s ease,border-color .25s ease,transform .25s ease,box-shadow .25s ease;
+}
+table[class*=_applyProuzek] td[class*=_textDoprava]:not([rowspan]){
+  border-bottom:0!important;
+  border-radius:16px 16px 0 0!important;
+  font-weight:700!important;
+  color:#1a1a1a!important;
+}
+table[class*=_applyProuzek] td[class*=_textDoruceni]{
+  border-top:0!important;
+  border-radius:0 0 16px 16px!important;
+  font-weight:600!important;
+  color:#e86f00!important;
+}
+
+/* Emoji */
+table[class*=_applyProuzek] tr:first-child td:nth-child(2)::before{content:"📦 "}
+table[class*=_applyProuzek] tr:first-child td:nth-child(3)::before{content:"⚡ "}
+table[class*=_applyProuzek] tr:first-child td:nth-child(4)::before{content:"🚚 "}
+
+/* Zelená tečka pryč */
+[class*=_applyKruh]{display:none!important}
+
+/* Obal lišty: žádná pevná výška */
+div:has(>table[class*=_applyProuzek]){
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+
+/* PC */
+@media(min-width:768px){
+  table[class*=_applyProuzek]{
+    border-spacing:12px 0!important;
+    padding:12px 8px!important;
+    margin:0 auto!important;
+  }
+  table[class*=_applyProuzek] td[rowspan]{font-size:15px!important;padding-right:18px!important}
+  table[class*=_applyProuzek] td[class*=_textDoprava]:not([rowspan]){font-size:15px!important;padding:12px 22px 2px!important}
+  table[class*=_applyProuzek] td[class*=_textDoruceni]{font-size:12.5px!important;padding:0 22px 12px!important}
+}
+
+/* PC: po najetí myší se zvedne celý boxík (název i doba) */
+@media(min-width:768px) and (hover:hover){
+  table[class*=_applyProuzek] tbody:has(tr:first-child td:nth-child(2):hover) :is(tr:first-child td:nth-child(2),tr:last-child td:nth-child(1)),
+  table[class*=_applyProuzek] tbody:has(tr:last-child td:nth-child(1):hover) :is(tr:first-child td:nth-child(2),tr:last-child td:nth-child(1)),
+  table[class*=_applyProuzek] tbody:has(tr:first-child td:nth-child(3):hover) :is(tr:first-child td:nth-child(3),tr:last-child td:nth-child(2)),
+  table[class*=_applyProuzek] tbody:has(tr:last-child td:nth-child(2):hover) :is(tr:first-child td:nth-child(3),tr:last-child td:nth-child(2)),
+  table[class*=_applyProuzek] tbody:has(tr:first-child td:nth-child(4):hover) :is(tr:first-child td:nth-child(4),tr:last-child td:nth-child(3)),
+  table[class*=_applyProuzek] tbody:has(tr:last-child td:nth-child(3):hover) :is(tr:first-child td:nth-child(4),tr:last-child td:nth-child(3)){
+    background:#fff!important;
+    border-color:#ff7a00!important;
+    transform:translateY(-3px);
+  }
+}
+
+/* Mobil: dvouřádková lišta, vejde se do původní výšky */
+@media(max-width:767px){
+  table[class*=_applyProuzek]{
+    width:100%!important;
+    border-spacing:4px 0!important;
+    border-radius:0!important;
+    border-width:1px!important;
+    border-left-width:5px!important;
+    padding:4px 2px!important;
+  }
+  table[class*=_applyProuzek] td[rowspan]{
+    width:27%!important;
+    white-space:normal!important;
+    line-height:1.2!important;
+    padding:0 4px!important;
+  }
+  table[class*=_applyProuzek] td[class*=_textDoprava]:not([rowspan]){
+    font-size:11.5px!important;
+    padding:5px 4px 0!important;
+    border-radius:12px 12px 0 0!important;
+  }
+  table[class*=_applyProuzek] td[class*=_textDoruceni]{
+    font-size:10px!important;
+    line-height:1.2!important;
+    padding:0 4px 5px!important;
+    border-radius:0 0 12px 12px!important;
+  }
+  table[class*=_applyProuzek] td[class*=_textDoprava]:not([rowspan])::before{content:""!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  table[class*=_applyProuzek] td{transition:none!important}
+}
